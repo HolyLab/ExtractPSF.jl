@@ -1,0 +1,15 @@
+authors = ["Cody-G <codyjgreer@gmail.com>"]
+name = "ExtractPSF"
+uuid = "387662ca-47fb-11e9-36d5-97ab6f05d7f8"
+version = "0.1.0"
+
+[deps]
+
+[compat]
+julia = "1.1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
