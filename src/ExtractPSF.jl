@@ -5,6 +5,8 @@ using OffsetArrays, Optim, Images, Statistics
 import Base: size, getindex, setindex!, axes
 
 include("find.jl")
+include("optics.jl")
+include("fit_gaussian.jl")
 include("psf.jl")
 include("synthetic_psfs.jl")
 

@@ -7,7 +7,7 @@ roi_radii = 2 .* ceil.(Int, bead_sigma)
 bias = 100
 bead_shift = (0,0,0)
 noise_max = 3
-bead_max = 10.0 #bead peak intensity
+bead_max = 100.0 #bead peak intensity
 imgsz = (50,50,20)
 
 #Case: first bead's roi isn't fully contained, so it should be excluded
