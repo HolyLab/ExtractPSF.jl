@@ -42,8 +42,8 @@ end
 
 #PsfFit contains the result of fitting a point spread function to an image img 
 #See also: Psf
-struct PsfFit{Tfit,N,Timg}
-    img::OffsetArray{Timg,N} #image array to which we fit the psf
+struct PsfFit{Tfit,N,Timg,TI}
+    parent_inds::TI #image array to which we fit the psf
     bias::Timg #black level of image (100 for PCO cameras)
     psf::Psf{Tfit,N}
     shift::NTuple{N,Tfit} #amount by which fitted psf is shifted relative to the center of the img array
@@ -56,7 +56,7 @@ quality(fit::PsfFit) = fit.quality
 size(fit::PsfFit) = size(psf(fit))
 shift(fit::PsfFit) = fit.shift
 scale(fit::PsfFit) = fit.scale
-image(fit::PsfFit) = fit.img
+Base.parentindices(fit::PsfFit) = fit.parent_inds
 
 function sum_otherdims(img, dim::Int, precision)
     sz = ntuple(d->d!=dim ? 1 : size(img,dim), Val(ndims(img)))
@@ -93,6 +93,6 @@ function PsfFit(img::OffsetArray{Timg,N}, bias;
     end
     sigmas = stds .* 2 #convert from std to optics halfwidth convention
     psf = Psf((sigmas...,))
-    fit = PsfFit(img, eltype(img)(bias), psf, (shifts...,), (scales...,), (quality...,))
+    fit = PsfFit(parentindices(parent(img)), eltype(img)(bias), psf, (shifts...,), (scales...,), (quality...,))
     return fit
 end

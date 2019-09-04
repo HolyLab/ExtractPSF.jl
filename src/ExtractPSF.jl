@@ -2,7 +2,7 @@ module ExtractPSF
 
 using OffsetArrays, Optim, Images, Statistics
 
-import Base: size, getindex, setindex!, axes
+import Base: size, getindex, setindex!, axes, parentindices
 
 include("find.jl")
 include("optics.jl")

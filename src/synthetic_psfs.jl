@@ -27,10 +27,14 @@ tuple_subtr(t1::Tuple, t2::Tuple) = (rng_subtr(first(t1), first(t2)), tuple_subt
 tuple_subtr(t1::Tuple{}, t2::Tuple{}) = ()
 
 #noise will be uniformly distributed, +- noise_max
-function fake_bead_sample(img_size::NTuple{3,Int}, bead_sigma, bead_shift, bead_ctrs::AbstractVector, bead_max, noise_max, bias)
-    roi_radii = 2 .* ceil.(Int, bead_sigma)
+function fake_bead_sample(img_size::NTuple{3,Int}, bead_sigma, bead_shift, bead_ctrs::AbstractVector, bead_max, noise_max, bias; img_eltype=UInt16)
+    fullimg = zeros(img_eltype, img_size...)
     psf0 = Psf(bead_sigma)
-    fullimg = zeros(UInt16, img_size...)
+    roi_radii = 2 .* ceil.(Int, bead_sigma)
+    fake_bead_sample!(fullimg, psf0, roi_radii, bead_shift, bead_ctrs, bead_max, noise_max, bias)
+end
+
+function fake_bead_sample!(fullimg::AbstractArray, psf0::Psf, roi_radii, bead_shift, bead_ctrs, bead_max, noise_max, bias)
     for i in eachindex(fullimg)
         fullimg[i] = round(eltype(fullimg), bias + (rand()-0.5)*2*noise_max)
     end
