@@ -46,6 +46,9 @@ rayleigh_length(lambda, focused_sigma) = pi*focused_sigma^2 / lambda
 rayleigh_length(lambda, f, unfocused_sigma, n) =
     rayleigh_length(lambda, approx_sigma_lateral(lambda, f, unfocused_sigma, n))
 
+#sigma of a focused beam as a function of displacement from the beam waist
+displaced_sigma(lambda, focused_sigma, displacement) = sqrt(focused_sigma^2*(1+(lambda*displacement/(pi*focused_sigma^2))^2))
+
 #This doesn't match the calculation on the OpenSPIM website.  Seems theirs is incorrect.
 fwhm_stats(std) = 2*sqrt(2*log(2)) * std
 fwhm_optics(sigma) = fwhm_stats(sigma/2)

@@ -5,6 +5,7 @@ _sigma = (5.0,10.0,15.0)
 bias = 100
 _scale = 10.0
 _shift = (1.4,0,0)
+#TODO: use optics-based Psf constructor, lightsheet psf constructor
 psf0 = Psf(_sigma)
 img0 = ExtractPSF.synth_psf_img(psf0, (30,30,30); shift=_shift, bead_max=_scale, bias=bias)
 #add some noise
