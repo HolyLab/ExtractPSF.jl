@@ -3,10 +3,11 @@ using Test
 
 _sigma = (5.0,10.0,15.0)
 bias = 100
-_scale = 2.0
+_scale = 10.0
 _shift = (1.4,0,0)
+#TODO: use optics-based Psf constructor, lightsheet psf constructor
 psf0 = Psf(_sigma)
-img0 = ExtractPSF.synth_psf_img(psf0, (30,30,30); shift=_shift, scale=_scale, bias=bias)
+img0 = ExtractPSF.synth_psf_img(psf0, (30,30,30); shift=_shift, bead_max=_scale, bias=bias)
 #add some noise
 noise = OffsetArray((rand(size(img0)...).-0.5).*0.5, axes(img0))
 img = img0.+noise
