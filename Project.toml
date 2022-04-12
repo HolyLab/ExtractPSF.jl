@@ -1,7 +1,7 @@
 name = "ExtractPSF"
 uuid = "387662ca-47fb-11e9-36d5-97ab6f05d7f8"
 authors = ["Cody-G <codyjgreer@gmail.com>"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 Images = "916415d5-f1e6-5110-898d-aaa5f9f070e0"
@@ -10,8 +10,10 @@ Optim = "429524aa-4258-5aef-a3af-852621145aeb"
 Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 
 [compat]
+Images = "0.24, 0.25"
 OffsetArrays = "1"
-julia = "1.1"
+Optim = "1"
+julia = "1.6"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
