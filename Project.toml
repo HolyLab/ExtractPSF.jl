@@ -1,7 +1,7 @@
 name = "ExtractPSF"
 uuid = "387662ca-47fb-11e9-36d5-97ab6f05d7f8"
 authors = ["Cody-G <codyjgreer@gmail.com>"]
-version = "0.2.0"
+version = "0.2.1"
 
 [deps]
 Images = "916415d5-f1e6-5110-898d-aaa5f9f070e0"
